@@ -41,6 +41,8 @@ int main()
 	int package;
 	double hours;
 	double bill;
+	double base;
+	double additionalRate;
 	cout << "Select a subscription package:\n";
 	cout << "1. Package A\n";
 	cout << "2. Package B\n";
@@ -48,37 +50,62 @@ int main()
 	cout << "4. Quit\n";
 
 	cin >> package;
+	
+	// Exits program if user chooses quit option (4)
+	if (package == QUIT_CHOICE)
+	{
+		exit(0);
+	}
 
-	cout << "Enter your usage in hours: ";
+	// Checks that option entered by user is in the correct range.
+	// If it is not the program exits after informing the user.
+	if (package < PACKAGE_A_CHOICE || package > PACKAGE_C_CHOICE)
+	{
+		cout << "The valid choices are 1 through 4.\n";
+		cout << "Run the program again and select one of those.\n";
+		exit(0);
+	}
+
+	// Get number of hours used
+	cout << "Enter the amount of hours used: ";
+
 	cin >> hours;
-
-	if (package == 1)
+	if (hours <= 0 || hours > 744)
 	{
-		cout << "You have selected Package A.\n";
-		if (hours > 10)
-		{
-			hours -= 10;
-			bill = hours * 2 + 9.95;
-			cout << "You went over the alloted 10 hours by ";
-			cout << hours << " hours. \n";
-			cout << "Your bill is " << bill << "\n";
-		}
-		else
-		{
-			cout << "Your usage is below the threshold of 10 hours per month.\n";
-			cout << "Your bill is $9.95\n";
-		}
+		cout << "You have entered an invalid number of hours.\n";
+		exit(0);
 	}
-	// Are we just editing dev????
 
-	if (package == 2)
+	if (package == PACKAGE_A_CHOICE)
 	{
-		cout << "You have selected Package B.\n";
-		if (hours > 20)
-		{
-			hours -= 20;
-			bill = hours * 1 + 14.95;
-		}
+		base = PACKAGE_A_BASE;
+		hours -= PACKAGE_A_HOURS;
+		additionalRate = PACKAGE_A_ADD;
 	}
+	else if (package == PACKAGE_B_CHOICE)
+	{
+		base = PACKAGE_B_BASE;
+		hours -= PACKAGE_B_HOURS;
+		additionalRate = PACKAGE_B_ADD;
+	}
+	else if (package == PACKAGE_C_CHOICE)
+	{
+		base = PACKAGE_C_BASE;
+		hours -= PACKAGE_C_HOURS;
+		additionalRate = PACKAGE_C_ADD;		
+	}
+
+
+
+	if (hours <= 0) 
+	{
+		cout << "Your bill is " << base << endl;
+	}
+	else
+	{
+		cout << "Your bill is " << base + hours * additionalRate << endl;
+	}
+
+
 	return 0;
 }
