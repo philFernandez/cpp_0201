@@ -104,10 +104,10 @@ int main()
 	}
 
 	// The additional rate for package C is currenty set 
-	// at 0 via a global constant. The same logic is used 
+	// at 0 via constant definition. The same logic is used 
 	// here as above so that if in the future there were 
 	// any change in the billing price all that would 
-	// need to be changed is the global constants.
+	// need to be changed is the value of the constants.
 
 	// Assign price for package C to base
 	// Subtract 0 hours from hours input by user 
