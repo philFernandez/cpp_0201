@@ -35,14 +35,14 @@ int main()
 	const double MIN_HOURS = 000.0;
 	const double MAX_HOURS = 744.0;
 
-
-
-
+	// package will hold number enterd by user in menu
 	int package;
+	// variables for holding values used for calculating total bill
 	double hours;
-	double bill;
 	double base;
 	double additionalRate;
+
+	//prompt user for package choice
 	cout << "Select a subscription package:\n";
 	cout << "1. Package A\n";
 	cout << "2. Package B\n";
@@ -57,8 +57,8 @@ int main()
 		exit(0);
 	}
 
-	// Checks that option entered by user is in the correct range.
-	// If it is not the program exits after informing the user.
+	// Checks that option entered by user is within valid range
+	// If it is not the program exits after informing the user
 	if (package < PACKAGE_A_CHOICE || package > PACKAGE_C_CHOICE)
 	{
 		cout << "The valid choices are 1 through 4.\n";
@@ -70,24 +70,50 @@ int main()
 	cout << "Enter the amount of hours used: ";
 
 	cin >> hours;
+
+	// Check that hours are within valid range
+	// If they are not the program exits after informing the user
 	if (hours <= 0 || hours > 744)
 	{
 		cout << "You have entered an invalid number of hours.\n";
 		exit(0);
 	}
 
+	// Assign price for package A to base
+	// Subtract 10 hours from hours input by user 
+	// The difference after subtraction is the number 
+	// of hours to be billed for additionally 
+	// Assign addtional rate for package A to additionalRate
 	if (package == PACKAGE_A_CHOICE)
 	{
 		base = PACKAGE_A_BASE;
 		hours -= PACKAGE_A_HOURS;
 		additionalRate = PACKAGE_A_ADD;
 	}
+
+	// Assign price for package B to base
+	// Subtract 20 hours from hours input by user 
+	// The difference after subtraction is the number 
+	// of hours to be billed for additionally 
+	// Assign addtional rate for package B to additionalRate
 	else if (package == PACKAGE_B_CHOICE)
 	{
 		base = PACKAGE_B_BASE;
 		hours -= PACKAGE_B_HOURS;
 		additionalRate = PACKAGE_B_ADD;
 	}
+
+	// The additional rate for package C is currenty set 
+	// at 0 via a global constant. The same logic is used 
+	// here as above so that if in the future there were 
+	// any change in the billing price all that would 
+	// need to be changed is the global constants.
+
+	// Assign price for package C to base
+	// Subtract 0 hours from hours input by user 
+	// The difference after subtraction is the number 
+	// of hours to be billed for additionally 
+	// Assign addtional rate for package C to additionalRate
 	else if (package == PACKAGE_C_CHOICE)
 	{
 		base = PACKAGE_C_BASE;
@@ -95,15 +121,23 @@ int main()
 		additionalRate = PACKAGE_C_ADD;		
 	}
 
+	// This is where the calculations are done for all
+	// three rate plans. All of the variables needed 
+	// have had the proper assignments via the descision 
+	// structure above
 
-
+	// if hours are less than or equal to zero after the above subtraction
+	// of alloted hours this means that the user stayed under the alloted hours
 	if (hours <= 0) 
 	{
-		cout << "Your bill is " << base << endl;
+		// if no overage occured the base price is charged
+		cout << "Your bill is " << base << endl; 
 	}
+
 	else
 	{
-		cout << "Your bill is " << base + hours * additionalRate << endl;
+		// each hour over the alloted hours is multiplied by the coinciding additional rate and added to the base price
+		cout << "Your bill is " << base + hours * additionalRate << endl; 
 	}
 
 
