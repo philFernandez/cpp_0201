@@ -76,7 +76,7 @@ int main()
 		if (hours > 20)
 		{
 			hours -= 20;
-			bill = hours * 1 + 14.95
+			bill = hours * 1 + 14.95;
 		}
 	}
 	return 0;
