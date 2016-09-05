@@ -4,7 +4,17 @@ Assignment 02 Question 01
 9/3/16
 */
 
+/*
+This program prompts the user for their level of 
+service on their internet plan. Each plan has a
+different billing scheme. The users bill is calculated
+according to the scheme which fits with the plan 
+they chose, along with the amount of hours that
+they have accessed the internet
+*/
+
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -67,35 +77,35 @@ int main()
 	}
 
 	// Get number of hours used
-	cout << "Enter the amount of hours used: ";
-
+	cout << "\nEnter the amount of hours used: ";
+	
 	cin >> hours;
+
 
 	// Check that hours are within valid range
 	// If they are not the program exits after informing the user
-	if (hours <= 0 || hours > 744)
+	if (hours < 0 || hours > 744)
 	{
 		cout << "You have entered an invalid number of hours.\n";
 		exit(0);
 	}
 
-	// Assign price for package A to base
-	// Subtract 10 hours from hours input by user 
+	// Assign price for package A to base.
+	// Subtract 10 hours from hours input by user. 
 	// The difference after subtraction is the number 
-	// of hours to be billed for additionally 
-	// Assign addtional rate for package A to additionalRate
+	// of hours to be billed for in addition to the base. 
+	// Assign addtional rate for package A to additionalRate.
 	if (package == PACKAGE_A_CHOICE)
 	{
 		base = PACKAGE_A_BASE;
 		hours -= PACKAGE_A_HOURS;
 		additionalRate = PACKAGE_A_ADD;
 	}
-
-	// Assign price for package B to base
-	// Subtract 20 hours from hours input by user 
+	// Assign price for package B to base.
+	// Subtract 20 hours from hours input by user. 
 	// The difference after subtraction is the number 
-	// of hours to be billed for additionally 
-	// Assign addtional rate for package B to additionalRate
+	// of hours to be billed for in addition to the base. 
+	// Assign addtional rate for package B to additionalRate.
 	else if (package == PACKAGE_B_CHOICE)
 	{
 		base = PACKAGE_B_BASE;
@@ -109,11 +119,11 @@ int main()
 	// any change in the billing price all that would 
 	// need to be changed is the value of the constants.
 
-	// Assign price for package C to base
-	// Subtract 0 hours from hours input by user 
+	// Assign price for package C to base.
+	// Subtract 0 hours from hours input by user. 
 	// The difference after subtraction is the number 
-	// of hours to be billed for additionally 
-	// Assign addtional rate for package C to additionalRate
+	// of hours to be billed for in addition to the base. 
+	// Assign addtional rate for package C to additionalRate.
 	else if (package == PACKAGE_C_CHOICE)
 	{
 		base = PACKAGE_C_BASE;
@@ -131,15 +141,15 @@ int main()
 	if (hours <= 0) 
 	{
 		// if no overage occured the base price is charged
-		cout << "Your bill is " << base << endl; 
+		cout << "\nYour bill is $" << base << endl; 
 	}
 
 	else
 	{
 		// each hour over the alloted hours is multiplied by the coinciding additional rate and added to the base price
-		cout << "Your bill is " << base + hours * additionalRate << endl; 
+		// use setprecision(2) and fixed to ensure proper display of monetary amount at two decimal
+		cout << "\nYour bill is $" << setprecision(2) << fixed << base + hours * additionalRate << endl;
 	}
-
 
 	return 0;
 }
